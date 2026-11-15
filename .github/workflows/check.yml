@@ -1,0 +1,23 @@
+name: Check and package
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install PyQt6
+      - run: python -m unittest discover -s tests -v
+      - run: python -m compileall -q addon tools
+      - run: python tools/build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: anki-openai-tunnel-${{ matrix.os }}
+          path: dist/*.ankiaddon

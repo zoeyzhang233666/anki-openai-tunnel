@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+user_files/
+addon/user_files/
+dist/
+*.log
+*.pid

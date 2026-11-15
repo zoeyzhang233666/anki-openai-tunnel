@@ -1,0 +1,5 @@
+{
+  "package": "anki_openai_tunnel",
+  "name": "Anki OpenAI Secure Tunnel",
+  "conflicts": ["chatgpt_secure_tunnel_menu"]
+}
